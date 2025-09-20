@@ -6,7 +6,7 @@ export async function MongoDB() {
     const password = process.env.MONGODB_PASSWORD
     const port = process.env.MONGODB_PORT
     const database = process.env.MONGODB_DATABASE
-    const uri = process.env.MONGODB_URI
+    const uri = process.env.CALCULADORA_FREELANCER_MONGODB_URI
     if (uri) {
         await connect(uri)
     } else {

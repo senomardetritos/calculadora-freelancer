@@ -10,7 +10,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "CalcFreela",
+  title: process.env.MONGO_DB_APP_NAME ? process.env.MONGO_DB_APP_NAME : "CalcFreela",
   description: "Calculadora para freelancers",
 };
 

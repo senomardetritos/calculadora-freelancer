@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.body {
+    width: 100%;
+}
+
+.body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.body ul li {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.body {
+    width: 100%;
+}
+
+.body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.body ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.body ul li h4 {
+    text-align: start;
+}
+
+.body ul li h3 {
+    text-wrap: nowrap;
+}

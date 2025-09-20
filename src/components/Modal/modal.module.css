@@ -1,0 +1,25 @@
+.dialog {
+    border-radius: 32px;
+    background: transparent;
+    padding: 24px;
+    width: var(--w-size);
+    max-width: 80%;
+    margin: auto auto;
+    border: none;
+    position: relative;
+}
+
+.dialog.sm {
+    width: 500px;
+}
+
+.dialog.md {
+    width: 700px;
+}
+
+.buttonClose {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background-color: transparent;
+}

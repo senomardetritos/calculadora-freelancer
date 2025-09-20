@@ -1,0 +1,46 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+    display: inline-block;
+}
+
+.loader .loaderContent {
+    display: flex;
+    width: 24px !important;
+    gap: 0px !important;
+}
+
+.loader .loaderContent p {
+    animation: l3 1s infinite linear;
+    position: relative;
+    color: inherit;
+    font-size: 0.7rem;
+    top: 0px;
+    padding: 1px;
+    margin: 0;
+}
+
+.loader .loaderContent p:first-child {
+    animation-delay: 0.4s;
+}
+
+.loader .loaderContent p:last-child {
+    animation-delay: 0.8s;
+}
+
+@keyframes l3 {
+    0% {
+        top: 0px
+    }
+
+    25% {
+        top: 4px
+    }
+
+    50% {
+        top: 0px
+    }
+
+    75% {
+        top: -4px
+    }
+}

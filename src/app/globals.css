@@ -1,0 +1,276 @@
+:root {
+  --dark: #161616;
+  --dark-1: #222222;
+  --gray: #D3D0CB;
+  --light: #ffffff;
+  --light-1: #f0f0f0;
+  --primary-light: #45b8a1;
+  --primary: #258050;
+  --primary-dark: #1f6153;
+  --secondary-light: #f9d268;
+  --secondary: #FEC802;
+  --secondary-dark: #A6852C;
+  --danger: #e74141;
+  --danger-dark: #bb3131;
+  --foreground: var(--light);
+  --foreground-1: var(--light-1);
+  --background: var(--dark);
+  --background-1: var(--dark-1);
+  --w-size: 1024px;
+  --h-header: 60px;
+}
+
+::backdrop {
+  background-color: var(--dark);
+  opacity: 0.8;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: var(--foreground);
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  margin: calc(var(--h-header) + 24px) 0;
+  min-height: calc(100vh - (var(--h-header) + 24px) - (var(--h-header) + 24px));
+}
+
+.page.top {
+  align-items: start;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.primary {
+  color: var(--primary) !important;
+}
+
+a.secondary {
+  color: var(--secondary) !important;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+.text-primary,
+.text-primary * {
+  color: var(--primary) !important;
+}
+
+.text-secondary,
+.text-secondary * {
+  color: var(--secondary) !important;
+}
+
+.text-danger,
+.text-danger * {
+  color: var(--danger) !important;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 12px;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+button.sm {
+  font-size: 10px;
+  padding: 6px 8px;
+}
+
+button.primary {
+  background-color: var(--primary) !important;
+  color: var(--light);
+  border-bottom: 2px solid var(--primary-dark) !important;
+}
+
+button.primary:disabled {
+  background-color: var(--primary-dark) !important;
+  color: var(--light);
+  border-bottom: 2px solid var(--primary) !important;
+  cursor: auto;
+}
+
+button.secondary {
+  background-color: var(--secondary) !important;
+  color: var(--dark);
+  border-bottom: 2px solid var(--secondary-dark) !important;
+}
+
+button.secondary:disabled {
+  background-color: var(--secondary-dark) !important;
+  color: var(--dark);
+  border-bottom: 2px solid var(--secondary) !important;
+}
+
+button.danger {
+  background-color: var(--danger) !important;
+  color: var(--light);
+  border-bottom: 2px solid var(--danger-dark) !important;
+}
+
+button.danger:disabled {
+  background-color: var(--danger-dark) !important;
+  color: var(--light);
+  border-bottom: 2px solid var(--danger) !important;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid var(--foreground);
+  background-color: var(--background);
+  ;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  border-radius: 5px;
+  background-color: var(--background);
+  border: 0;
+  outline: none;
+  padding: 0;
+  margin: 16px 0;
+  height: 3px;
+  cursor: pointer;
+}
+
+/* For WebKit browsers */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary) !important;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* For Mozilla Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--primary) !important;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* For Microsoft Edge/IE */
+input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--primary) !important;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+}
+
+table th {
+  padding: 8px;
+  text-align: center;
+  width: 120px;
+}
+
+table thead th {
+  border-bottom: 2px solid var(--foreground-1);
+}
+
+table tfoot th {
+  border-top: 2px solid var(--foreground-1);
+}
+
+table td {
+  padding: 8px;
+  text-align: center;
+}
+
+table tbody tr:first-child td {
+  padding-top: 16px !important;
+}
+
+table tbody tr:last-of-type td {
+  padding-bottom: 16px !important;
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--foreground);
+  margin: 16px 0;
+}

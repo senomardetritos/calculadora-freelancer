@@ -1,0 +1,59 @@
+.profitContent {
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profitContent .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.profitContent .body {
+    width: 100%;
+}
+
+.profitContent .body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    width: 100%;
+}
+
+.profitContent .body ul li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.profitContent .body ul li div input {
+    width: 100%;
+}
+
+.profitContent .body ul li div span {
+    font-size: 20px;
+    font-weight: 600;
+    width: 120px;
+    text-align: end;
+}
+
+.profitContent .body ul li footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.profitContent .body ul li footer button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}

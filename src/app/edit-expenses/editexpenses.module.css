@@ -1,0 +1,102 @@
+.expensesContent {
+    width: var(--w-size);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.expensesContent .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.expensesContent .body {
+    width: 100%;
+}
+
+.expensesContent .body table .tableButtons,
+.expensesContent .body table .tableButtons {
+    text-align: center;
+    width: 80px;
+}
+
+.expensesContent .body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    width: 100%;
+}
+
+.expensesContent .body ul li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.expensesContent .body ul li div input {
+    width: 100%;
+}
+
+.expensesContent .body ul li div span {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.expensesContent .body ul li footer,
+.expensesContent form footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.expensesContent .body ul li footer button,
+.expensesContent form footer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 256px;
+}
+
+.expensesContent form {
+    width: 100%;
+}
+
+.expensesContent form ul {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.expensesContent form ul li {
+    width: 100%;
+}
+
+.expensesContent form ul li h4 {
+    margin-bottom: 8px;
+}
+
+.expensesContent form ul li span {
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.expensesContent .deleteText {
+    margin: 16px 0;
+    line-height: 30px;
+    font-weight: 300;
+}
+
+.expensesContent .deleteText span {
+    display: inline-block;
+    margin: 0px 4px;
+    font-size: 18px;
+    font-weight: 600;
+}

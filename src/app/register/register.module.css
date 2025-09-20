@@ -1,0 +1,20 @@
+.registerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 300px;
+}
+
+.registerContent form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.registerContent form button {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}

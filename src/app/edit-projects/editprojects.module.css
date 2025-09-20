@@ -1,0 +1,127 @@
+.projectsContent {
+    width: var(--w-size);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.projectsContent .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.projectsContent .body {
+    width: 100%;
+}
+
+.projectsContent .body table .tableButtons,
+.projectsContent .body table .tableButtons {
+    text-align: center;
+    width: 80px;
+}
+
+.projectsContent .body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    width: 100%;
+}
+
+.projectsContent .body ul li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.projectsContent .body ul li div input {
+    width: 100%;
+}
+
+.projectsContent .body ul li div span {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.projectsContent .body ul li footer,
+.projectsContent form footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.projectsContent .body ul li footer button,
+.projectsContent form footer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 256px;
+}
+
+.projectsContent form {
+    width: 100%;
+}
+
+.projectsContent form ul {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.projectsContent form ul li {
+    width: 100%;
+    list-style: none;
+}
+
+.projectsContent form ul li h4 {
+    margin-bottom: 8px;
+}
+
+.projectsContent form ul li span {
+    margin-top: 8px;
+    display: inline-block;
+}
+.projectsContent form .formValue {
+    position: relative;
+}
+
+.projectsContent form .formValue input {
+    width: calc(100% - 80px);
+}
+
+.projectsContent form .formValue button {
+    position: absolute;
+    right: 0px;
+    top: 26px;
+    border: none;
+    height: 41px;
+    width: 87px;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.projectsContent form .infos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.projectsContent .deleteText {
+    margin: 16px 0;
+    line-height: 30px;
+    font-weight: 300;
+}
+
+.projectsContent .deleteText span {
+    display: inline-block;
+    margin: 0px 4px;
+    font-size: 18px;
+    font-weight: 600;
+}

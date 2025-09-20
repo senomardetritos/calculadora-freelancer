@@ -44,7 +44,7 @@ O projeto utiliza MongoDB como banco de dados, executado em uma instância Docke
 Altere os seguintes arquivos com seus dados de login no banco de dados:
 
 - docker-compose.yaml
-- src/lib/mongodb.ts
+- .env.local
 
 Rode o comando para criar e instanciar o banco de dados: 
 
@@ -66,6 +66,11 @@ Crie um arquivo na pasta raiz com o nome de .env.local e coloque as seguintes in
 ```env
 AUTH_SECRET="CRIE UMA CHAVE"
 AUTH_SALT="CRIE UM SALT"
+MONGO_DB_SERVER=""
+MONGO_DB_USER=""
+MONGO_DB_PASSWORD=""
+MONGO_DB_PORT=""
+MONGO_DB_DATABASE=""
 ```
 
 ## ⚡ Instalando e rodando o projeto

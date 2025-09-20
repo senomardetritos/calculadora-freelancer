@@ -19,6 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('AppName: ' + process.env.MONGO_DB_APP_NAME)
   return (
     <html lang="en">
       <body className={roboto.variable} suppressHydrationWarning={true}>

@@ -1,4 +1,5 @@
-import { connect } from 'mongoose';
+import { attachDatabasePool } from '@vercel/functions';
+import { MongoClient } from "mongodb";
 
 export async function MongoDB() {
     const server = process.env.MONGODB_SERVER
@@ -7,9 +8,13 @@ export async function MongoDB() {
     const port = process.env.MONGODB_PORT
     const database = process.env.MONGODB_DATABASE
     const uri = process.env.CALCULADORA_FREELANCER_MONGODB_URI
+    
     if (uri) {
-        await connect(uri)
+        const client = new MongoClient(uri);
+        attachDatabasePool(client);
     } else {
-        await connect(`mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`)
+        const url = `mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`
+        const client = new MongoClient(url);
+        attachDatabasePool(client);
     }
 }

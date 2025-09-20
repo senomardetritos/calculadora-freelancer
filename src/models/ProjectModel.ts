@@ -1,3 +1,4 @@
+import { MongoDB } from "@/lib/mongodb";
 import { model, models, Schema } from "mongoose";
 
 // 1. Create a Schema corresponding to the document interface.
@@ -9,4 +10,7 @@ const projectModel = new Schema({
 });
 
 // 2. Create a Model.
-export default models.Project || model('Project', projectModel);
+// export default models.Project || model('Project', projectModel);
+if (!models.Project) model('Project', projectModel);
+const mongoose = await MongoDB()
+export default mongoose.model('Project')

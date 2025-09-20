@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Logo } from "@/components/Logo/Logo";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
@@ -7,12 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
 
   const router = useRouter()
-  async function fetchTest() {
-    const response = await fetch(`/api/test-mongo`)
-    const data = await response.json()
-    console.log(data)
-  }
-  useEffect(() => { fetchTest() }, [])
+
   return (
     <section className="page">
       <div className={styles.homeContent}>

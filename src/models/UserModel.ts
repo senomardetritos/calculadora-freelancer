@@ -13,7 +13,6 @@ const userSchema = new Schema({
 });
 
 // 2. Create a Model.
-// export default models.User || model('User', userSchema);
 if (!models.User) model('User', userSchema)
 const mongoose = await MongoDB()
 export default mongoose.model('User')

@@ -10,7 +10,6 @@ const expenseModel = new Schema({
 });
 
 // 2. Create a Model.
-// export default models.Expense || model('Expense', expenseModel);
 if (!models.Expense) model('Expense', expenseModel);
 const mongoose = await MongoDB()
 export default mongoose.model('Expense')

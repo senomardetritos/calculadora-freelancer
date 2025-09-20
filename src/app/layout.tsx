@@ -21,7 +21,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  await MongoDB()
+  const mongoose = await MongoDB()
+  // console.log()
   return (
     <html lang="en">
       <body className={roboto.variable} suppressHydrationWarning={true}>

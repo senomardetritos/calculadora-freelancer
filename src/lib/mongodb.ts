@@ -12,10 +12,13 @@ export async function MongoDB() {
     const port = process.env.MONGODB_PORT
     const database = process.env.MONGODB_DATABASE
     const uri = process.env.CALCULADORA_FREELANCER_MONGODB_URI
+    const opts = {
+        bufferCommands: false,
+    }
     if (uri) {
-        cachedConnection = await connect(uri)
+        cachedConnection = await connect(uri, opts)
     } else {
-        cachedConnection = await connect(`mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`)
+        cachedConnection = await connect(`mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`, opts)
     }
     return cachedConnection
 }

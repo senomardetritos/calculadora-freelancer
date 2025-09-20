@@ -8,7 +8,7 @@ export async function MongoDB() {
     const database = process.env.MONGO_DB_DATABASE
     const app_name = process.env.MONGO_DB_APP_NAME
     if (app_name) {
-        await connect(`mongodb+srv://${user}:${password}@${server}/?retryWrites=true&w=majority&appName=${app_name}r`)
+        await connect(`mongodb+srv://${user}:${password}@${server}/?retryWrites=true&w=majority&appName=${app_name}`)
     } else {
         await connect(`mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`)
     }

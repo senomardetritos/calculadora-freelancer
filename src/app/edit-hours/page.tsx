@@ -20,8 +20,8 @@ export default function EditHours() {
     async function fetchHours() {
         const response = await fetch(`/api/hours-worked`)
         const data = await response.json() as HourWorkedInterface
-        setHourPerDay(data.hours_per_day.toString())
-        setDaysPerWeek(data.days_per_week.toString())
+        setHourPerDay(data.hours_per_day ? data.hours_per_day.toString() : '0')
+        setDaysPerWeek(data.days_per_week ? data.days_per_week.toString() : '0')
         setPending(false)
     }
 

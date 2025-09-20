@@ -1,14 +1,12 @@
 'use server'
 import eventAuth from "@/helpers/auth-event";
 import { UserInterface } from "@/interfaces/user-interface";
-import { MongoDB } from "@/lib/mongodb";
 import UserModel from "@/models/UserModel";
 import { decode, encode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const getAuthUser = async () => {
-  MongoDB()
   const cookieStore = await cookies();
   const access_token = cookieStore.get('access-token')?.value
   const secret = process.env.AUTH_SECRET || '';

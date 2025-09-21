@@ -1,6 +1,6 @@
 'use server'
 import { UserInterface } from '@/interfaces/user-interface';
-import { doLogin, getAuthUser } from '../auth';
+import { checkAccountTest, doLogin, getAuthUser } from '../auth';
 import UserModel from '@/models/UserModel';
 
 export interface ProfileFormState { success: boolean; errors?: { [key: string]: string }; fields?: FormData; }
@@ -11,6 +11,8 @@ export async function editProfile(prevState: ProfileFormState, formData: FormDat
 
     if (formData.get('email') && formData.get('name')) {
         const user = await getAuthUser() as UserInterface;
+        const accountTest = await checkAccountTest(user)
+        if (accountTest) return { success: false, errors: accountTest, fields: formData }
         const exist_user = await UserModel.findOne({ email: formData.get('email') })
         if (!exist_user || user.email == formData.get('email')) {
             const data = {

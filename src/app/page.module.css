@@ -19,10 +19,11 @@
 }
 
 .homeContent .buttons {
-    padding: 16px;
+    width: 300px;
 }
 
-.homeContent button {
-    width: 256px;
-    margin: 8px;
+.homeContent .buttons button {
+    margin: 0px;
+    margin-top: 16px;
+    width: 100%;
 }

@@ -15,6 +15,8 @@ export default function EditProfile() {
     const [state, formAction, isPending] = useActionState(editProfile, { success: false });
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
+    const [initData, setInitData] = useState<UserInterface>()
+    const [defaultError, setDefaultError] = useState('')
     const [pending, setPending] = useState(true)
     const router = useRouter()
 
@@ -23,6 +25,7 @@ export default function EditProfile() {
         const data = await response.json() as UserInterface
         setEmail(data.email)
         setName(data.name)
+        setInitData(data)
         setPending(false)
     }
 
@@ -30,7 +33,13 @@ export default function EditProfile() {
         if (state.success) {
             eventAuth.emit('authChange', { state })
             redirect('/dashboard')
+        } else {
+            setEmail(initData?.email ? initData.email.toString() : '')
+            setName(initData?.name ? initData.name.toString() : '')
+            setDefaultError(state.errors?.default || '')
+            setPending(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     useEffect(() => { fetchProfile() }, [])
@@ -69,6 +78,14 @@ export default function EditProfile() {
                             </ul>}
                             {pending && <Loader />}
                             <div className='divider'></div>
+                            {defaultError && (
+                                <>
+                                    <div className='form-error'>
+                                        {defaultError}
+                                    </div>
+                                    <div className='divider'></div>
+                                </>
+                            )}
                             <ul>
                                 <li>
                                     <footer>

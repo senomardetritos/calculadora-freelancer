@@ -32,6 +32,7 @@ const EditProjectModal = forwardRef<DialogRef, DeleteProjectModalProps>(({ editI
     const [pending, setPending] = useState(true)
     const [shouldCharge, setShouldCharge] = useState(0)
     const [monthHours, setMonthHours] = useState(0)
+    const [defaultError, setDefaultError] = useState('')
 
     function showModal() {
         if (!editItem) editItem = {} as ProjectInterface
@@ -39,6 +40,7 @@ const EditProjectModal = forwardRef<DialogRef, DeleteProjectModalProps>(({ editI
         setName(editItem.name)
         changeMonths(editItem.months.toString())
         setValue(editItem.value.toString())
+        setDefaultError('')
         fetchValues()
         state.errors = {}
         modalRef.current?.showModal()
@@ -85,6 +87,8 @@ const EditProjectModal = forwardRef<DialogRef, DeleteProjectModalProps>(({ editI
         if (state.success) {
             onSuccess()
             closeModal()
+        } else {
+            setDefaultError(state.errors?.default || '')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
@@ -177,6 +181,14 @@ const EditProjectModal = forwardRef<DialogRef, DeleteProjectModalProps>(({ editI
                         {pending && <Loader />}
                     </div>
                     <div className='divider'></div>
+                    {defaultError && (
+                        <>
+                            <div className='form-error'>
+                                {defaultError}
+                            </div>
+                            <div className='divider'></div>
+                        </>
+                    )}
                     <footer>
                         <button type='button' className='danger' onClick={closeModal}>
                             Cancelar

@@ -7,6 +7,7 @@ import { Loader } from '@/components/Loader/Loader';
 import { redirect, useRouter } from 'next/navigation';
 import { register } from './actions';
 import eventAuth from '@/helpers/auth-event';
+import AccountTest from '@/components/AccountTest/AccountTest';
 
 export default function Register() {
 
@@ -56,6 +57,10 @@ export default function Register() {
                         Já tenho uma conta
                     </button>
                 </Form>
+                <div className='line-or'>
+                    <span>OU</span>
+                </div>
+                <AccountTest />
             </div>
         </section>
     )

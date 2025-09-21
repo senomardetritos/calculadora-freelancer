@@ -1,5 +1,5 @@
 'use server'
-import { getAuthUser } from '../auth';
+import { checkAccountTest, getAuthUser } from '../auth';
 import UserModel from '@/models/UserModel';
 import { UserInterface } from '@/interfaces/user-interface';
 
@@ -7,10 +7,12 @@ export interface HoursFormState { success: boolean; errors?: { [key: string]: st
 
 export async function editHours(prevState: HoursFormState, formData: FormData): Promise<HoursFormState> {
 
-    const errors = { hours_per_day: '', days_per_week: '' }
+    const errors = { default: '', hours_per_day: '', days_per_week: '' }
 
     if (formData.get('hours_per_day') && formData.get('days_per_week')) {
         const user = await getAuthUser() as UserInterface;
+        const accountTest = await checkAccountTest(user)
+        if (accountTest) return { success: false, errors: accountTest, fields: formData }
         await UserModel.updateOne(
             { email: user.email },
             {

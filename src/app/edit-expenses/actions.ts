@@ -1,7 +1,7 @@
 'use server'
 
 import ExpenseModel from "@/models/ExpenseModel";
-import { getAuthUser } from "../auth";
+import { checkAccountTest, getAuthUser } from "../auth";
 import { UserInterface } from "@/interfaces/user-interface";
 
 export interface ExpensesFormState { success: boolean; errors?: { [key: string]: string }; fields?: FormData; }
@@ -12,6 +12,8 @@ export async function editExpenses(prevState: ExpensesFormState, formData: FormD
 
     if (formData.get('name') && formData.get('type') && formData.get('value')) {
         const user = await getAuthUser() as UserInterface;
+        const accountTest = await checkAccountTest(user)
+        if (accountTest) return { success: false, errors: accountTest, fields: formData }
         if (formData.get('id') && formData.get('id') != '') {
             await ExpenseModel.updateOne(
                 { _id: formData.get('id'), user: user.id },
@@ -42,6 +44,9 @@ export async function editExpenses(prevState: ExpensesFormState, formData: FormD
 export async function deleteExpenses(prevState: ExpensesFormState, formData: FormData): Promise<ExpensesFormState> {
 
     const user = await getAuthUser() as UserInterface;
+    const accountTest = await checkAccountTest(user)
+    if (accountTest) return { success: false, errors: accountTest, fields: formData }
+    
     const errors = { id: '' }
 
     if (formData.get('id') && formData.get('id') != '') {
@@ -50,7 +55,7 @@ export async function deleteExpenses(prevState: ExpensesFormState, formData: For
         )
         return { success: true, errors: {}, fields: formData }
     }
-    
+
     if (!formData.get('id')) errors.id = 'Id é requerido'
     return { success: false, errors, fields: formData }
 }

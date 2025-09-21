@@ -7,6 +7,7 @@ import { useActionState, useEffect, useState } from 'react';
 import { Loader } from '@/components/Loader/Loader';
 import { redirect, useRouter } from 'next/navigation';
 import eventAuth from '@/helpers/auth-event';
+import AccountTest from '@/components/AccountTest/AccountTest'
 
 export default function Login() {
 
@@ -46,6 +47,10 @@ export default function Login() {
             Criar nova conta
           </button>
         </Form>
+        <div className='line-or'>
+          <span>OU</span>
+        </div>
+        <AccountTest />
       </div>
     </section>
   )

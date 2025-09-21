@@ -16,29 +16,36 @@ export default async function middleware(req: NextRequest) {
     const cookieStore = await cookies();
     const access_token = cookieStore.get('access-token')?.value
     const secret = process.env.AUTH_SECRET || '';
-    const session = await decode({
-        token: access_token,
-        secret,
-        salt: process.env.AUTH_SALT || ''
-    })
+    try {
+        const session = await decode({
+            token: access_token,
+            secret,
+            salt: process.env.AUTH_SALT || ''
+        })
 
-    // Redireciona para /dashboard se o usuário estiver autenticado e for uma rota protegida
-    if (!isProtectedRoute && session?.id) {
-        return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
-    }
 
-    // Redireciona para /login se o usuário não estiver autenticado
-    if (isProtectedRoute && !session?.id) {
-        return NextResponse.redirect(new URL('/login', req.nextUrl))
-    }
+        // Redireciona para /dashboard se o usuário estiver autenticado e for uma rota protegida
+        if (!isProtectedRoute && session?.id) {
+            return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
+        }
 
-    // Redireciona para /dashboard se o usuário estiver autenticado
-    if (
-        isPublicRoute &&
-        session?.id &&
-        !req.nextUrl.pathname.startsWith('/dashboard')
-    ) {
-        return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
+        // Redireciona para /login se o usuário não estiver autenticado
+        if (isProtectedRoute && !session?.id) {
+            return NextResponse.redirect(new URL('/login', req.nextUrl))
+        }
+
+        // Redireciona para /dashboard se o usuário estiver autenticado
+        if (
+            isPublicRoute &&
+            session?.id &&
+            !req.nextUrl.pathname.startsWith('/dashboard')
+        ) {
+            return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
+        }
+    } catch (e) {
+        console.log(e)
+        cookieStore.delete('access-token')
+        return NextResponse.redirect(new URL('/', req.nextUrl))
     }
 
     return NextResponse.next()

@@ -1,5 +1,5 @@
 'use server'
-import { getAuthUser } from '../auth';
+import { checkAccountTest, getAuthUser } from '../auth';
 import UserModel from '@/models/UserModel';
 import { UserInterface } from '@/interfaces/user-interface';
 
@@ -11,6 +11,8 @@ export async function editProfit(prevState: ProfitFormState, formData: FormData)
 
     if (formData.get('profit')) {
         const user = await getAuthUser() as UserInterface;
+        const accountTest = await checkAccountTest(user)
+        if (accountTest) return { success: false, errors: accountTest, fields: formData }
         await UserModel.updateOne(
             { email: user.email },
             { profit: formData.get('profit') }

@@ -14,6 +14,8 @@ export default function EditHours() {
     const [state, formAction, isPending] = useActionState(editHours, { success: false });
     const [hourPerDay, setHourPerDay] = useState('1')
     const [daysPerWeek, setDaysPerWeek] = useState('1')
+    const [initData, setInitData] = useState<HourWorkedInterface>()
+    const [defaultError, setDefaultError] = useState('')
     const [pending, setPending] = useState(true)
     const router = useRouter()
 
@@ -22,13 +24,20 @@ export default function EditHours() {
         const data = await response.json() as HourWorkedInterface
         setHourPerDay(data.hours_per_day ? data.hours_per_day.toString() : '0')
         setDaysPerWeek(data.days_per_week ? data.days_per_week.toString() : '0')
+        setInitData(data)
         setPending(false)
     }
 
     useEffect(() => {
         if (state.success) {
             redirect('/dashboard')
+        } else {
+            setHourPerDay(initData?.hours_per_day ? initData.hours_per_day.toString() : '0')
+            setDaysPerWeek(initData?.days_per_week ? initData.days_per_week.toString() : '0')
+            setDefaultError(state.errors?.default || '')
+            setPending(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     useEffect(() => { fetchHours() }, [])
@@ -84,6 +93,14 @@ export default function EditHours() {
                                 </li>
                             </ul>
                             <div className='divider'></div>
+                            {defaultError && (
+                                <>
+                                    <div className='form-error'>
+                                        {defaultError}
+                                    </div>
+                                    <div className='divider'></div>
+                                </>
+                            )}
                             <ul>
                                 <li>
                                     <footer>

@@ -8,7 +8,6 @@ export interface LoginFormState { success: boolean; errors?: { [key: string]: st
 export async function login(prevState: LoginFormState, formData: FormData): Promise<LoginFormState> {
 
     const user = await UserModel.findOne({ email: formData.get('email') })
-
     const errors = { email: '', password: '' }
 
     if (user) {

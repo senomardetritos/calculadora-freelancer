@@ -6,6 +6,14 @@ import { decode, encode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+export const checkAccountTest = async (user: UserInterface) => {
+  if (user && user.email == 'teste@email.com') {
+    return { default: 'Usuário de teste não pode inserir, alterar ou excluir os dados' }
+  } else {
+    return null
+  }
+}
+
 export const getAuthUser = async () => {
   const cookieStore = await cookies();
   const access_token = cookieStore.get('access-token')?.value

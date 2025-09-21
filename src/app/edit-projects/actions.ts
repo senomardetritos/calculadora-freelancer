@@ -1,7 +1,7 @@
 'use server'
 
 import ProjectModel from "@/models/ProjectModel";
-import { getAuthUser } from "../auth";
+import { checkAccountTest, getAuthUser } from "../auth";
 import { UserInterface } from "@/interfaces/user-interface";
 
 export interface ProjectsFormState { success: boolean; errors?: { [key: string]: string }; fields?: FormData; }
@@ -12,6 +12,9 @@ export async function editProjects(prevState: ProjectsFormState, formData: FormD
 
     if (formData.get('name') && formData.get('months') && formData.get('value')) {
         const user = await getAuthUser() as UserInterface;
+        const accountTest = await checkAccountTest(user)
+        if (accountTest) return { success: false, errors: accountTest, fields: formData }
+
         if (formData.get('id') && formData.get('id') != '') {
             await ProjectModel.updateOne(
                 { _id: formData.get('id'), user: user.id },
@@ -42,6 +45,9 @@ export async function editProjects(prevState: ProjectsFormState, formData: FormD
 export async function deleteProjects(prevState: ProjectsFormState, formData: FormData): Promise<ProjectsFormState> {
 
     const user = await getAuthUser() as UserInterface;
+    const accountTest = await checkAccountTest(user)
+    if (accountTest) return { success: false, errors: accountTest, fields: formData }
+    
     const errors = { id: '' }
 
     if (formData.get('id') && formData.get('id') != '') {
@@ -50,7 +56,7 @@ export async function deleteProjects(prevState: ProjectsFormState, formData: For
         )
         return { success: true, errors: {}, fields: formData }
     }
-    
+
     if (!formData.get('id')) errors.id = 'Id é requerido'
 
     return { success: false, errors, fields: formData }

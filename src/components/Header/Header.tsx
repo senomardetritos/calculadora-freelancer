@@ -64,9 +64,9 @@ export const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.headerContent}>
-                <div className={styles.logo}>
+                <Link href="/" className={styles.logo}>
                     <Logo />
-                </div>
+                </Link>
                 {logged && (
                     <Form action={formAction}>
                         <div className={styles.data}>
@@ -83,6 +83,13 @@ export const Header = () => {
                             </button>
                         </div>
                     </Form>
+                )}
+                {!logged && (
+                    <div className={styles.data}>
+                        <button type="button" onClick={toggleTheme}>
+                            {theme == 'dark' ? 'Tema Claro' : 'Tema Escuro'}
+                        </button>
+                    </div>
                 )}
             </div>
         </header>

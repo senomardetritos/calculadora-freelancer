@@ -165,6 +165,15 @@ button.danger:disabled {
   border-bottom: 2px solid var(--danger) !important;
 }
 
+button.link {
+  background-color: transparent !important;
+  color: var(--foreground);
+  border-bottom: none !important;
+  text-transform: none;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
 input,
 select,
 textarea {
@@ -273,4 +282,32 @@ table tbody tr:last-of-type td {
   height: 1px;
   background-color: var(--foreground);
   margin: 16px 0;
+}
+
+.line-or {
+  width: 100%;
+  margin: 16px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.line-or::before,
+.line-or::after {
+  content: "";
+  background-color: var(--foreground);
+  height: 1px;
+  display: block;
+  position: absolute;
+  top: 10px;
+}
+
+.line-or::before {
+  left: 12px;
+  width: calc(40% - 12px);
+}
+
+.line-or::after {
+  right: 12px;
+  width: calc(40% - 12px);
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { Logo } from "@/components/Logo/Logo";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import AccountTest from '@/components/AccountTest/AccountTest';
 
 export default function Home() {
 
@@ -29,6 +30,10 @@ export default function Home() {
             <button className="secondary" onClick={() => router.push('/login')}>
               Já tenho uma conta
             </button>
+            <div className='line-or'>
+              <span>OU</span>
+            </div>
+            <AccountTest />
           </div>
         </aside>
       </div>

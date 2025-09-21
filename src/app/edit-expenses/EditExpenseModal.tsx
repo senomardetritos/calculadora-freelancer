@@ -25,6 +25,8 @@ const EditExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ editI
     const [name, setName] = useState('')
     const [type, setType] = useState('month')
     const [value, setValue] = useState(0)
+    const [defaultError, setDefaultError] = useState('')
+
     const typeEnum = TypeExpenseEnum;
 
     function showModal() {
@@ -33,6 +35,7 @@ const EditExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ editI
         setName(editItem.name)
         setType(editItem.type)
         setValue(editItem.value)
+        setDefaultError('')
         state.errors = {}
         modalRef.current?.showModal()
     }
@@ -51,6 +54,8 @@ const EditExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ editI
         if (state.success) {
             onSuccess()
             closeModal()
+        } else {
+            setDefaultError(state.errors?.default || '')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
@@ -109,6 +114,14 @@ const EditExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ editI
                         </li>
                     </ul>
                     <div className='divider'></div>
+                    {defaultError && (
+                        <>
+                            <div className='form-error'>
+                                {defaultError}
+                            </div>
+                            <div className='divider'></div>
+                        </>
+                    )}
                     <footer>
                         <button type='button' className='danger' onClick={closeModal}>
                             Cancelar

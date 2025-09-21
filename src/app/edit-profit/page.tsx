@@ -16,6 +16,8 @@ export default function EditProfit() {
     const [profit, setProfit] = useState('1')
     const [percent, setPercent] = useState('')
     const [expenses, setExpenses] = useState(0)
+    const [initData, setInitData] = useState<DesiredProfitInterface>()
+    const [defaultError, setDefaultError] = useState('')
     const [pending, setPending] = useState(true)
     const router = useRouter()
 
@@ -23,6 +25,7 @@ export default function EditProfit() {
         const response = await fetch(`/api/desired-profit`)
         const data = await response.json() as DesiredProfitInterface
         setProfit(data.profit.toString())
+        setInitData(data)
         setExpenses(data.expenses)
         if (data.expenses == 0) {
             setPercent('0')
@@ -44,7 +47,12 @@ export default function EditProfit() {
     useEffect(() => {
         if (state.success) {
             redirect('/dashboard')
+        } else {
+            setProfit(initData?.profit ? initData.profit.toString() : '0')
+            setDefaultError(state.errors?.default || '')
+            setPending(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     useEffect(() => { fetchProfit() }, [])
@@ -102,6 +110,14 @@ export default function EditProfit() {
                                 </li>
                             </ul>
                             <div className='divider'></div>
+                            {defaultError && (
+                                <>
+                                    <div className='form-error'>
+                                        {defaultError}
+                                    </div>
+                                    <div className='divider'></div>
+                                </>
+                            )}
                             <ul>
                                 <li>
                                     <footer>

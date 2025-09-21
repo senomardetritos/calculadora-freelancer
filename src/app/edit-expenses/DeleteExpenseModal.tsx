@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal } from "@/components/Modal/Modal"
 import Form from "next/form"
 import styles from './editexpenses.module.css'
@@ -22,9 +22,11 @@ const DeleteExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ del
     const [state, formAction, isPending] = useActionState(deleteExpenses, { success: false });
     const modalRef = useRef<HTMLDialogElement>(null)
     const inputRef = useRef(null);
+    const [defaultError, setDefaultError] = useState('')
 
     function showModal() {
         modalRef.current?.showModal()
+        setDefaultError('')
     }
     useImperativeHandle(ref, () => {
         return {
@@ -40,6 +42,8 @@ const DeleteExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ del
         if (state.success) {
             onSuccess()
             closeModal()
+        } else {
+            setDefaultError(state.errors?.default || '')
         }
     }, [state, onSuccess])
 
@@ -58,6 +62,14 @@ const DeleteExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ del
                 <div className="form-error">{state.errors.error}</div>
             )}
             <div className='divider'></div>
+            {defaultError && (
+                <>
+                    <div className='form-error'>
+                        {defaultError}
+                    </div>
+                    <div className='divider'></div>
+                </>
+            )}
             <Form action={formAction}>
                 <input
                     name="id"

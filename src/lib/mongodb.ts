@@ -18,7 +18,7 @@ export async function MongoDB() {
     if (uri) {
         cachedConnection = await connect(uri, opts)
     } else {
-        cachedConnection = await connect(`mongodb://${user}:${password}@!${server}:${port}/${database}?authSource=admin`, opts)
+        cachedConnection = await connect(`mongodb://${user}:${password}@${server}:${port}/${database}?authSource=admin`)
     }
     return cachedConnection
 }

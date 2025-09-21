@@ -40,12 +40,13 @@ const DeleteExpenseModal = forwardRef<DialogRef, DeleteExpenseModalProps>(({ del
 
     useEffect(() => {
         if (state.success) {
-            onSuccess()
             closeModal()
+            onSuccess()
         } else {
             setDefaultError(state.errors?.default || '')
         }
-    }, [state, onSuccess])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state])
 
     return (
         <Modal ref={modalRef} size='sm' onClose={closeModal}>

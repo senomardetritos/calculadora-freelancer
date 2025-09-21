@@ -44,7 +44,7 @@ export const DesiredProfit = () => {
             <div className="divider"></div>
             <div className={styles.body}>
                 {pending && <Loader />}
-                {!pending && profit && (
+                {!pending && (
                     <ul >
                         <li aria-label='percent'>
                             <h4>Percentual das Despesas</h4>

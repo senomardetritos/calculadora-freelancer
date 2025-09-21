@@ -45,7 +45,8 @@ const DeleteProjectModal = forwardRef<DialogRef, DeleteProjectModalProps>(({ del
         } else {
             setDefaultError(state.errors?.default || '')
         }
-    }, [state, onSuccess])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state])
 
     return (
         <Modal ref={modalRef} size='sm' onClose={closeModal}>

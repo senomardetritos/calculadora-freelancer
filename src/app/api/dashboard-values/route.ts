@@ -19,7 +19,7 @@ export async function GET() {
         return acc + (item.months < 1 ? item.value : item.value / item.months)
     }, 0)
 
-    const total_value = data_user.profit + expenses
+    const total_value = (data_user.profit ? data_user.profit : 0) + expenses
     const total_hours = data_user.hours_per_day * data_user.days_per_week * 4
     const should_charge = total_value && total_hours ? total_value / total_hours : 0
     const is_charging = projects && total_hours ? projects / total_hours : 0
